@@ -1,14 +1,9 @@
 const express = require('express');
-const friends = require('../data/friends');
-const bodyParser = require('body-parser');
-const app = express();
+const friendArray = require('../data/friends');
+const router = express.Router();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-
-app.get('/api/friends', (req, res) => {
-    res.json(friends);
+router.use('/api/friends', (req, res, next) => {
+    res.json(friendArray);
 });
 
-module.exports = app;
+module.exports = router;
