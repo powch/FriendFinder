@@ -9,12 +9,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// const htmlRoutes = require('./app/routing/htmlRoutes');
+const htmlRoutes = require('./app/routing/htmlRoutes');
 const apiRoutes = require('./app/routing/apiRoutes');
 
-// app.use('/', htmlRoutes);
-// app.use('/survey', htmlRoutes);
-app.use('/api/friends', apiRoutes);
+app.get('/survey', htmlRoutes);
+app.get('/api/friends', apiRoutes);
+app.post('/api/friends', apiRoutes);
+app.get('*', htmlRoutes);
 
 
 app.listen(PORT, () => console.log(`LISTENING ON PORT ${PORT}`));
