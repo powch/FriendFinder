@@ -24,7 +24,7 @@ const postForm = () => {
             jQuery('#foundFriendModal').modal('show');
         });
     } else {
-        alert('Please make sure to fill in all required fields and that they are in the correct format.');
+        jQuery('#errorModal').modal('show');
     }
 }
 
