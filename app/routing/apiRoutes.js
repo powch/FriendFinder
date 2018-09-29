@@ -12,9 +12,25 @@ router.get('/api/friends', (req, res) => {
 
 router.post('/api/friends', (req, res) => {
     const newFriend = req.body;
-    console.log(newFriend);
+    const newFriendScores = newFriend.scores;
+    
+    let chosenFriend;
+    let totalDifference = 41;
+
+    friendArray.forEach(friend => {
+        const scores = friend.scores;
+        let currentDifference = 0;
+
+        scores.forEach((score, idx) => currentDifference += Math.abs(score - newFriendScores[idx]));
+
+        if (currentDifference < totalDifference) {
+            totalDifference = currentDifference;
+            chosenFriend = friend;
+        }
+    });
+
     friendArray.push(newFriend);
-    res.json(newFriend);
+    res.json(chosenFriend);
 });
 
 module.exports = router;
